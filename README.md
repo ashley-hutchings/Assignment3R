@@ -25,7 +25,7 @@ other so we knew what was going on each step of the way.
 3. We both pushed our branches and merged them into the main.
 4. Then we both pulled the latest versions of the main branch.
 
-#Conclusion
+# Conclusion
 This assignment helped us practice real-world collaboration using GitHub and 
 RStudio. We reinforced our understanding of data visualization, summary 
 statistics, and version control. It also prepared us for future teamwork on 
