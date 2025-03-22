@@ -1,0 +1,64 @@
+---
+title: "Assignment 3 - GitHub Collab"
+author: "Ashley Hutchings & Tyler Yellott"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+# Box Plots and Summary Stats
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Set working directory to GitHub project folder
+setwd("/Users/ashleyhutchings/Desktop/R Class/Assignment 3 GitHub/Assignment3R")
+
+# Read in CSV
+txt_df<-read.csv("TextMessages.csv", header=TRUE)
+
+# Check data
+head(txt_df)
+
+# Check data types
+sapply(txt_df,class)
+
+# Convert Group to Factor
+txt_df$Group<-as.factor(txt_df$Group)
+
+# Load libraries needed for functions below
+library(tidyverse)
+library(ggplot2)
+library(tidyr)
+
+# Pivot dataset from wide to long in order to create boxplots
+txt_long <- txt_df %>% pivot_longer(cols = c(Baseline, Six_months),
+               names_to = "Time",
+               values_to = "Texts")
+
+# Check data is transposed
+head(txt_long)
+
+# Create boxplots using facet_wrap to group by Group
+ggplot(txt_long, aes(x = Time, y = Texts)) +
+  geom_boxplot(fill = "lightblue", color = "black") +
+  facet_wrap(~ Group) +
+  labs(title = "Text Messages by Group and Time Period",
+       x = "Time Period",
+       y = "Number of Messages") +
+  theme_minimal()
+
+
+# Use summarise() to define summary statistics
+txt_long %>%
+  group_by(Group, Time) %>%
+  summarise(
+    count = n(),
+    mean = mean(Texts),
+    median = median(Texts),
+    sd = sd(Texts),
+    min = min(Texts),
+    max = max(Texts),
+    .groups = "drop"
+  )
+
+```
+
+
+
