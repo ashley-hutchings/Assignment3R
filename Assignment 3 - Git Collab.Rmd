@@ -35,7 +35,7 @@ txt_long <- txt_df %>% pivot_longer(cols = c(Baseline, Six_months),
 # Check data is transposed
 head(txt_long)
 
-# Create boxplots using facet_wrap to group by Group
+# Create boxplots using facet_wrap to group by Groupg
 ggplot(txt_long, aes(x = Time, y = Texts)) +
   geom_boxplot(fill = "lightblue", color = "black") +
   facet_wrap(~ Group) +
